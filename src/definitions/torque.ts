@@ -2,7 +2,7 @@ import { Measure, Unit } from './../index.js';
 export type TorqueUnits = TorqueMetricUnits | TorqueImperialUnits;
 export type TorqueSystems = 'metric' | 'imperial';
 
-export type TorqueMetricUnits = 'Nm';
+export type TorqueMetricUnits = 'Nm' | 'kNm' | 'kgf-m';
 export type TorqueImperialUnits = 'lbf-ft';
 
 const metric: Record<TorqueMetricUnits, Unit> = {
@@ -13,6 +13,20 @@ const metric: Record<TorqueMetricUnits, Unit> = {
     },
     to_anchor: 1,
   },
+  'kNm': {
+    name: {
+      singular: 'Kilonewton-meter',
+      plural: 'Kilonewton-meters',
+    },
+    to_anchor: 1000,
+  },
+  'kgf-m': {
+    name: {
+      singular: 'Kilogram-force-meter',
+      plural: 'Kilogram-force-meters'
+    },
+    to_anchor: 9.806650,
+  }
 };
 
 const imperial: Record<TorqueImperialUnits, Unit> = {
