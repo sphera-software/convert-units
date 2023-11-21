@@ -1,10 +1,11 @@
 import { Measure, Unit } from './../index.js';
-export type ForceUnits = ForceSIUnits;
-export type ForceSystems = 'SI';
+export type ForceUnits = ForceMetricUnits | ForceImperialUnits;
+export type ForceSystems = 'metric' | 'imperial';
 
-export type ForceSIUnits = 'N' | 'kN' | 'lbf' | 'kgf';
+export type ForceMetricUnits = 'N' | 'kN' | 'kgf';
+export type ForceImperialUnits = 'lbf' | 'kip';
 
-const SI: Record<ForceSIUnits, Unit> = {
+const metric: Record<ForceMetricUnits, Unit> = {
   N: {
     name: {
       singular: 'Newton',
@@ -19,25 +20,48 @@ const SI: Record<ForceSIUnits, Unit> = {
     },
     to_anchor: 1000,
   },
-  lbf: {
-    name: {
-      singular: 'Pound-force',
-      plural: 'Pound-forces',
-    },
-    to_anchor: 4.44822,
-  },
   kgf: {
     name: {
       singular: 'Kilogram-force',
-      plural: 'Kilogram-forces',
+      plural: 'Kilograms-force',
     },
-    to_anchor: 9.807,
+    to_anchor: 9.806650,
+  },
+};
+
+const imperial: Record<ForceImperialUnits, Unit> = {
+  lbf: {
+    name: {
+      singular: 'Pound-force',
+      plural: 'Pounds-force',
+    },
+    to_anchor: 1,
+  },
+  kip: {
+    name: {
+      singular: 'Kilopound',
+      plural: 'Kilopounds'
+    },
+    to_anchor: 1000,
   },
 };
 
 const measure: Measure<ForceSystems, ForceUnits> = {
   systems: {
-    SI,
+    metric,
+    imperial,
+  },
+  anchors: {
+    metric: {
+      imperial: {
+        ratio: 1 / 4.44822,
+      },
+    },
+    imperial: {
+      metric: {
+        ratio: 4.44822,
+      },
+    },
   },
 };
 
