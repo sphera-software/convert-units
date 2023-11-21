@@ -377,7 +377,7 @@ test('torque possibilities', () => {
     torque,
   });
   const actual = convert().possibilities('torque'),
-    expected = ['Nm', 'lbf-ft'];
+    expected = ['Nm', 'kNm', 'kgf-m', 'lbf-ft'];
   expect(actual.sort()).toEqual(expected.sort());
 });
 
@@ -544,7 +544,7 @@ test('force possibilities', () => {
     force,
   });
   const actual = convert().possibilities('force'),
-    expected = ['N', 'kN', 'lbf', 'kgf'];
+    expected = ['N', 'kN', 'kgf', 'tf', 'lbf', 'kip'];
   expect(actual.sort()).toEqual(expected.sort());
 });
 
