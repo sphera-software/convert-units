@@ -2,7 +2,7 @@ import { Measure, Unit } from './../index.js';
 export type ForceUnits = ForceMetricUnits | ForceImperialUnits;
 export type ForceSystems = 'metric' | 'imperial';
 
-export type ForceMetricUnits = 'N' | 'kN' | 'kgf';
+export type ForceMetricUnits = 'N' | 'kN' | 'kgf' | 'tf';
 export type ForceImperialUnits = 'lbf' | 'kip';
 
 const metric: Record<ForceMetricUnits, Unit> = {
@@ -27,6 +27,13 @@ const metric: Record<ForceMetricUnits, Unit> = {
     },
     to_anchor: 9.806650,
   },
+  tf: {
+    name: {
+      singular: 'Tonne-force',
+      plural: 'Tonnes-force'
+    },
+    to_anchor: 9806.650,
+  }
 };
 
 const imperial: Record<ForceImperialUnits, Unit> = {
